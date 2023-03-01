@@ -14,7 +14,7 @@ const Landing = (props) => {
     }, [])
     console.log(productos)
   return (
-    <div>
+    <div className='landing'>
         <h1 style={{textAlign:'center'}}>{props.greeting}</h1>
         <div class="container text-center">
         { !productos ? 'cargando...' :

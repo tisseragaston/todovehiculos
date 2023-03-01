@@ -38,5 +38,9 @@
    display: block;
    margin-left: 20%;
    margin-right: 20%;
+   background-color: white;
+}
+.landing {
+    background-color: rgb(189, 183, 183);
 }
 

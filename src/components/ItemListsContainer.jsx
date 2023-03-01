@@ -14,7 +14,7 @@ const Mercadolibre = (props) => {
     }, [id])
     console.log(productos)
   return (
-    <div>
+    <div className='landing'>
         <h1 style={{textAlign: 'center'}}>Resultados</h1>
         <div class="container text-center">
         { !productos ? 'cargando...' :
