@@ -1,0 +1,42 @@
+.imgNosotros {
+    height: 200px;
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;
+}
+.imgDetalle {
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.catalogo {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+.detalles{
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    background-color: rgb(189, 183, 183);
+}
+.botonPrecio {
+    background-color: cornflowerblue;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.letraBoton {
+    text-decoration: none;
+    color: aliceblue;
+}
+.cards {
+   border-style: double;
+   display: block;
+   margin-left: 20%;
+   margin-right: 20%;
+}
+
