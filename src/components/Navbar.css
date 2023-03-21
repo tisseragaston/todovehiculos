@@ -10,3 +10,14 @@
     text-decoration: none;
     padding: 10px;
 }
+.globoCart {
+    background-color: red;
+    border-radius: 30px;
+    padding: 2px;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin: 10px;
+    color: aliceblue;
+    text-decoration: none;
+    
+}

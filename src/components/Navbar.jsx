@@ -5,17 +5,6 @@ import './Navbar.css'
 
 const navbar = (props) => { 
 
-  // const [value, setValue] = useState("") 
-
-  // const inChange = (evento) => {
-  //     setValue(evento.target.value)
-  // }
-
-  // const inSubmit = (evento) => {
-  //     evento.preventDefault ();
-  //     props.setSearch (value)
-  // }
-
   return (
     <>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -30,29 +19,18 @@ const navbar = (props) => {
             <Link className='linkNav' to="/">Home</Link>
         </div>
         <div >
-            <Link className='linkNav' to="/category/MLA1744">Camionetas</Link>
+            <Link className='linkNav' to="/category/autos">Autos</Link>
         </div>
         <div >
-            <Link className='linkNav' to="/category/MLA58254">Camiones</Link>
+            <Link className='linkNav' to="/category/camionetas">Camionetas</Link>
         </div>
         <div >
-            <Link className='linkNav' to="/category/MLA1763">Motos</Link>
-        </div>
-        <div >
-            <Link className='linkNav' to="/category/MLA4514">Lanchas</Link>
+            <Link className='linkNav' to="/category/motos">Motos</Link>
         </div>
         <div>
-          <Link className='linkNav' to="/about">About</Link>
+          <Link className='linkNav' to="/about">Nosotros</Link>
         </div>
       </ul>
-      {/* <form onSubmit={inSubmit}>
-        <input type="text" value={value} onChange={inChange}></input>
-        <button type="submit" >Buscar</button>
-      </form> */}
-      {/* <form class="d-flex mx-5" role="search" onSubmit={inSubmit}>
-        <input class="form-control me-2" value={value} onChange={inChange} type="search" placeholder="Busca tu vehiculo" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
-      </form> */}
       <CartWidget />
     </div>
   </div>

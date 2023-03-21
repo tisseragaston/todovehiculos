@@ -43,4 +43,45 @@
 .landing {
     background-color: rgb(189, 183, 183);
 }
+.botonReservar {
+    background-color: green;
+    margin: 10px;
+    border-radius: 15px;
+    padding: 10px;
+    color: aliceblue;
+}
+.botonQuitar {
+    background-color: red;
+    margin: 10px;
+    border-radius: 15px;
+    padding: 10px;
+    color: aliceblue;
+}
+.botonCarrito {
+    background-color: rgb(247, 0, 255);
+    margin: 20px;
+    border-radius: 15px;
+    padding: 10px;
+    color: aliceblue;
+    text-decoration: none;
+}
+.cart5 {
+    text-align: center;
+    
+    
+    
+}
+.cartList {
+    display: flex;
+    justify-content: center;
+}
+.botonReservar {
+    background-color: rgb(3, 156, 11);
+    margin: 10px;
+    border-radius: 15px;
+    padding: 10px;
+    color: aliceblue;
+
+}
+
 

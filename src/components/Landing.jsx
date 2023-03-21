@@ -1,34 +1,43 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from "react-router-dom"
 import './style.css'
+import { CartContext } from '../Context/CartContext'
+import { getDocs, getFirestore, collection } from 'firebase/firestore'
 
 const Landing = (props) => {
-    const [productos, setProductos] = useState(null)
     const { id } = useParams
+    const { addToCart, removeFromCart } = useContext (CartContext)
+    const [items, setItems] = useState()
 
     useEffect(() => {
-      fetch(`https://api.mercadolibre.com/sites/MLA/search?q=Autos&limit=50`)
-        .then(response => response.json())
-        .then(dataJson => setProductos(dataJson.results))
+        const db = getFirestore ()
+        const vehiculosRef = collection (db, 'items')
+        getDocs (vehiculosRef).then((snapshot) => {
+          setItems(snapshot.docs.map ((doc) => ({id: doc.id, ...doc.data()})))
+        })
     }, [])
-    console.log(productos)
+
   return (
-    <div className='landing'>
+    <div className='landing p-4'>
         <h1 style={{textAlign:'center'}}>{props.greeting}</h1>
         <div class="container text-center">
-        { !productos ? 'cargando...' :
-          productos.map (product => (
+        { !items ? 
+        <div class="spinner-border" role="status">
+         <span class="visually-hidden">Loading...</span>
+        </div> :
+          items.map (items => (
             <>
             <div className='cards'>
-            <div>
-            <img src={product.thumbnail} class="card-img-top w-25 rounded mx-auto d-block" alt="foto"/>
-            <h5>{product.title}</h5>
+            <div className= 'm-2 p-4'>
+            <img src={items.imgID} class="card-img-top w-25 rounded mx-auto d-block" alt="foto"/>
+            <h5>{items.title}</h5>
             <div className='botonPrecio'>
-            <Link to ={`/vehiculo/${product.id}`} className='letraBoton'>Ver Precio</Link>
+            <Link to ={`/${items.id}`} className='letraBoton'>Ver Detalle</Link>
             </div>
             </div>
             </div>
+            <br />
             </>  
        ))
         }
@@ -36,9 +45,6 @@ const Landing = (props) => {
         
     </div>
   )
-  
-  
   }
  
-
 export default Landing

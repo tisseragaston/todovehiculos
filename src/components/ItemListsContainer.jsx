@@ -1,31 +1,43 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from "react-router-dom"
 import './style.css'
+import { CartContext } from '../Context/CartContext'
+import { getDocs, getFirestore, collection, where, query } from 'firebase/firestore'
 
 const Mercadolibre = (props) => {
     const { id } = useParams ();
-    const [productos, setProductos] = useState(null)
+    const { addToCart, removeFromCart } = useContext (CartContext)
+    const [items, setItems] = useState()
 
     useEffect(() => {
-      fetch(`https://api.mercadolibre.com/sites/MLA/search?category=${id}&limit=50`)
-        .then(response => response.json())
-        .then(dataJson => setProductos(dataJson.results))
-    }, [id])
-    console.log(productos)
+    const db = getFirestore ()
+    const q = query(
+      collection (db, 'items'),
+      where ('categoryID', '==', id)
+    )
+
+      getDocs(q).then((snapshot) => {
+      setItems(snapshot.docs.map ((doc) => ({id: doc.id, ...doc.data()})))
+    })
+}, [id])
+
   return (
-    <div className='landing'>
-        <h1 style={{textAlign: 'center'}}>Resultados</h1>
+    <div className='landing p-5'>
+        <h1 style={{textAlign: 'center'}}>{id.toUpperCase()}</h1>
         <div class="container text-center">
-        { !productos ? 'cargando...' :
-          productos.map (product => (
+        { !items ? 
+        <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+        </div> :
+          items.map (items => (
             <>
-            <div className='cards'>
+            <div className='cards m-5 p-3'>
             <div>
-            <img src={product.thumbnail} class="card-img-top w-25 rounded mx-auto d-block" alt="foto"/>
-            <h5>{product.title}</h5>
+            <img src={items.imgID} class="card-img-top w-25 rounded mx-auto d-block" alt="foto"/>
+            <h5>{items.title}</h5>
             <div className='botonPrecio'>
-            <Link to ={`/vehiculo/${product.id}`} className='letraBoton'>Ver Precio</Link>
+            <Link to ={`/${items.id}`} className='letraBoton'>Ver Detalle</Link>
             </div>
             </div>
             </div>
@@ -39,10 +51,5 @@ const Mercadolibre = (props) => {
   
   
   }
-
-  // https://pokeapi.co/api/v2/pokemon?limit=20
-  // `https://api.mercadolibre.com/sites/MLA/search?q=${id}&limit=50`
-  // https://api.mercadolibre.com/sites/MLA/search?category=${id}&limit=50
-
 
 export default Mercadolibre
