@@ -13,7 +13,7 @@ const Carrito = () => {
     const resetForm = () => {
       setBuyerName('');
       setBuyerNumber('');
-      cart = []
+
     };
 
     const enviarSubmit = (e) => {
@@ -23,6 +23,7 @@ const Carrito = () => {
             Name: buyerName,
             Phone: buyerNumber,
           },
+          orderNumber: Math.random()*100000000000000000,
           items: cart,
           total: getTotal ()
         }
@@ -30,8 +31,8 @@ const Carrito = () => {
         addDoc(ordersCollection, order)
         .then((docRef) => {
           mensajeCompra();
-          console.log('Documento enviado. ID:', docRef.id);
           resetForm ();
+          clearCart();
         }
         )
 
